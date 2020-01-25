@@ -100,9 +100,10 @@ class MyWebServer(socketserver.BaseRequestHandler):
         content_type = "Content-Type: {}".format(content_type)
         content_length = "Content-Length: {}".format(len(content))
         empty_header = "\r\n"
+        connection_close = "Connection: close"
 
-        return "{0}\r\n{1}\r\n{2}\r\n{3}{4}".format(
-            status_code, content_type, content_length, empty_header, content
+        return "{0}\r\n{1}\r\n{2}\r\n{3}\r\n{4}{5}".format(
+            status_code, content_type, content_length, connection_close, empty_header, content 
         )
 
     def validPath(self, path):
